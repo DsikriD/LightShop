@@ -35,7 +35,7 @@ export function Table<T extends Record<string, any>>({
   );
 
   return (
-    <div>
+    <HStack>
       <table className={cls.outerTable}>
         <colgroup>
           {columns.map((col, idx) => (
@@ -125,6 +125,6 @@ export function Table<T extends Record<string, any>>({
           ))}
         </tbody>
       </table>
-    </div>
+    </HStack>
   );
 }

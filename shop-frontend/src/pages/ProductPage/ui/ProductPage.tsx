@@ -135,13 +135,15 @@ export const ProductPage = () => {
         </HStack>
       </HStack>
 
-      <Table
-        edit={edit}
-        remove={remove}
-        searchTerm={searchTerm}
-        data={products}
-        columns={productColumns}
-      />
+      <HStack className={cls.tableWrapper}>
+        <Table
+          edit={edit}
+          remove={remove}
+          searchTerm={searchTerm}
+          data={products}
+          columns={productColumns}
+        />
+      </HStack>
     </div>
   );
 };
