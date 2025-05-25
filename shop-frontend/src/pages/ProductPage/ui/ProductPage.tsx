@@ -19,10 +19,10 @@ import { PlusIcon } from "../../../icons";
 const productColumns = [
   { key: "id", header: "ID" },
   { key: "name", header: "Название" },
-  { key: "description", header: "Description" },
+  { key: "description", header: "Описание" },
   {
     key: "quantity",
-    header: "Quantity",
+    header: "Кол-во",
   },
 ];
 

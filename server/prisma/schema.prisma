@@ -10,18 +10,18 @@ datasource db {
 model products {
   id BigInt @id @default(autoincrement())
   name             String  @db.VarChar(255)
-  description      String
+  description      String?
   manufacturer     String? @db.VarChar(255)
   type             String? @db.VarChar(255)
   power            Int?
   illuminated_area Int?
-  quantity         Int
+  quantity         Int?
   collection       String? @db.VarChar(255)
   height           Int?
   diameter         Int?
   style            String? @db.VarChar(255)
   material         String? @db.VarChar(255)
-  image            String
+  image            String?
 }
 
 model users {

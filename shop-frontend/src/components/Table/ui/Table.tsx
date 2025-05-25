@@ -166,19 +166,26 @@ export function Table<T extends Record<string, any>>({
       {totalPages > 1 && (
         <div className={cls.pagination}>
           <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
-            Назад
+            <Text text="Назад" size="15" weight="700" />
           </button>
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i + 1}
-              onClick={() => goToPage(i + 1)}
-              className={currentPage === i + 1 ? cls.activePage : ""}
-            >
-              {i + 1}
-            </button>
-          ))}
+          {Array.from(
+            { length: Math.min(3, totalPages) },
+            (_, i) => {
+              const page = Math.max(1, currentPage - 1) + i;
+              if (page > totalPages) return null;
+              return (
+                <button
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  className={currentPage === page ? cls.activePage : cls.disabledPage}
+                >
+                  {page}
+                </button>
+              );
+            }
+          )}
           <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>
-            Вперёд
+            <Text text="Вперёд" size="15" weight="700" />
           </button>
         </div>
       )}

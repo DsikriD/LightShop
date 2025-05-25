@@ -117,8 +117,6 @@
 .pagination button {
   padding: 6px 12px;
   border-radius: 4px;
-  border: 1px solid #aaa;
-  background: #fff;
   cursor: pointer;
   font-size: 16px;
   transition: background 0.2s, color 0.2s;
@@ -128,7 +126,12 @@
   cursor: default;
 }
 .activePage {
-  background: #222;
-  color: #fff;
-  border-color: #222;
+    background: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
+}
+.disabledPage {
+    background: var(--color-white);
+    color: var(--color-gray);
+    border-color: var(--color-gray);
 }
