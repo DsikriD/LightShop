@@ -1,0 +1,24 @@
+:root {
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-primary: #3498db;
+    --color-secondary: #35EB35;
+    --color-red: #EB3535;
+    --color-gray: #353b39;
+    --color-yellow: #EBDC35;
+    --color-light-gray: #D9D9D9;
+    --color-dark-gray:#454d4a;
+
+    /*navbar*/
+    --navbar-height: 110px;
+    /*navbar - text*/
+    --nav-font-family: 'Manrope', sans-serif;
+    --nav-font-letter-spacing: 0px;
+    --nav-font-size: 20px;
+    --nav-font-weight: 500;
+
+    --login-font-family: 'Roboto', sans-serif;
+    --login-font-letter-spacing: 2px;
+    --login-font-size: 12px;
+    --login-font-weight: 300;
+}

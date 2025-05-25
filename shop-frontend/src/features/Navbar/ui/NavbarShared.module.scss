@@ -1,0 +1,29 @@
+.Navbar {
+    position: absolute;
+    inset: 0;
+    height: var(--navbar-height);
+    background-color: var(--color-white);
+    z-index: 10;
+}
+
+.theme-black {
+    background-color: var(--color-black);
+}
+
+.theme-white {
+    background-color: var(--color-white);
+}
+
+.icon {
+    padding: 0 140px 0 140px;
+    border: 1px solid purple;
+}
+
+.NavbarItem {
+    height: var(--navbar-height);
+    margin: 0 0 0 62px;
+}
+
+.NavbarItem:hover {
+    transform: scale(1.1);
+}

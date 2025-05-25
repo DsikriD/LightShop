@@ -1,0 +1,104 @@
+.ProductModal {
+    position: fixed;
+    left: 50%;
+    top: calc(var(--navbar-height)); // или сколько хочешь отступ
+    transform: translateX(-50%);
+    background-color: var(--color-light-gray);
+    padding: 30px 40px;
+    z-index: 1000;
+    height: calc(100% - var(--navbar-height));
+    width: 72%;
+}
+
+.header {
+    padding: 0 0 22px 0;
+}
+
+.input {
+    padding: 0 10px;
+    height: 21px;
+    width: 210px;
+}
+
+.imageInput {
+    width: calc(100% - 100px);
+    color: var(--color-white);
+}
+
+.description {
+    height: 59px;
+    width: 100%;
+    border: 1px solid var(--color-black);
+    padding: 5px;
+    resize: none;
+}
+
+.closeButton {
+    background: var(--color-red);
+    border-radius: 30px;
+    height: 37.45px;
+    width: 37.45px;
+    border: 3px solid var(--color-black);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    padding: 0;
+}
+
+.closeButton:hover {
+    background-color: var(--color-white);
+}
+
+.attributeContainer {
+    width: 450px;
+    border: 1px solid red;
+}
+
+.attributeLabel {
+    width: 230px;
+}
+
+.cardBody {
+    overflow-y: scroll;
+    height: 500px;
+    margin-bottom: 10px;
+}
+
+.col {
+    width: calc(100%/ 2);
+    padding: 10px;
+    background-color: var(--color-dark-gray);
+    border: 1px solid var(--color-white);
+    border-radius: 10px;
+}
+
+.prefooterContainer{
+    height: 80px;
+    padding: 10px;
+    background: var(--color-white);
+    border: 1px solid blue;
+}
+
+.footerContainer {
+}
+
+.submitButton{
+    background-color: var(--color-black);
+    width: 220px;
+    padding: 5px 8px;
+}
+
+.addButton {
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--color-secondary);
+}
+
+.editButton {
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--color-primary);
+}

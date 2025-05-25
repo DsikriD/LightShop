@@ -1,0 +1,11 @@
+.FooterItem {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    font-size: var(--nav-font-size);
+    font-weight: var(--nav-font-weight);
+    font-family: var(--nav-font-family);
+    letter-spacing: var(--nav-font-letter-spacing);
+}

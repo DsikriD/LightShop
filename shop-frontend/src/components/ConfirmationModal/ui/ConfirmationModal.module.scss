@@ -1,0 +1,61 @@
+.ConfirmationModal {
+    position: fixed;
+    /* Фиксированное положение относительно окна */
+    top: 50%;
+    /* Половина высоты экрана */
+    left: 50%;
+    /* Половина ширины экрана */
+    transform: translate(-50%, -50%);
+    /* Сдвигаем элемент обратно на половину его ширины и высоты */
+    height: 130px;
+    width: 300px;
+    background-color: var(--color-dark-gray);
+    /* Белый фон для модального окна */
+    padding: 0 20px 20px 20px;
+    border-radius: 20px;
+    /* Отступы внутри модального окна */
+    z-index: 1000;
+    /* Убедитесь, что модальное окно выше других элементов */
+}
+
+.textContainer{
+    color: var(--color-white);
+    padding: 0 10px;
+}
+
+.header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleheader{
+    color: var(--color-light-gray);
+}
+
+.closeButton {
+    border: none;
+    background: var(--color-red);
+    border-radius: 12px;
+    width: 24px;
+    height: 24px;
+}
+
+.buttonContainer {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirmationButton {
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--color-secondary);
+}
+
+.cancellationButton {
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--color-red);
+}

@@ -1,0 +1,77 @@
+.ProductPage {
+    position: absolute;
+    inset: 0;
+    padding: calc(50px + var(--navbar-height)) 140px 0 140px;
+    background-color: var(--color-white);
+    overflow: hidden;
+}
+
+.header {
+    margin: 0 0 41px 0;
+    padding: 10px 15px;
+    background-color: var(--color-light-gray);
+    height: 60px;
+}
+
+.input {
+    height: 31px;
+    font-family: var(--nav-font-family);
+    font-size: var(--nav-font-size);
+    font-weight: 700;
+    border: 1px solid var(--color-black);
+    padding: 2px 8px;
+    width: 350px;
+}
+
+.addCard{
+    width: 248px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    height: 37.45px;
+    width: 37.45px;
+    background-color: var(--color-secondary);
+    border: 3px solid var(--color-black);
+    color: var(--color-black);
+    padding: 0;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--color-white);
+    color: var(--color-white);
+}
+
+@media (max-width: 500px) {
+    .title {
+        font-size: 15px;
+        padding: 0px 5px 10px 5px;
+    }
+}
+
+// @media (max-width: 320px) {
+//     .input {
+//         padding: 10px 20px 10px 20px;
+//         border-radius: 20px;
+//         border: 1px solid red;
+//     }
+
+//     .header {
+//         padding: 10px 15px 10px 15px;
+//         border-radius: 30px;
+//     }
+
+//     .ProductPage {
+//         padding: 5px;
+//     }
+
+//     .title {
+//         color: var(--color-light-gray);
+//         text-transform: uppercase;
+//         padding: 10px 5px 10px 5px;
+//     }
+// }
