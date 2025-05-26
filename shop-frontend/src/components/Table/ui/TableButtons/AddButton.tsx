@@ -10,12 +10,11 @@ interface AddButtonProps {
 export const AddButton = ({ onClick }: AddButtonProps) => {
     return (
         <HStack justify="between" className={cls.addCard} onClick={onClick}>
-            <Text 
-                text="Добавить карточку" 
-                weight="700" 
-                size="20" 
-                className={cls.addCardText}
-            />
+            <span
+                className={cls.addCardResponsiveText}
+            >
+                Добавить карточку
+            </span>
             <button className={cls.button}>
                 <PlusIcon />
             </button>

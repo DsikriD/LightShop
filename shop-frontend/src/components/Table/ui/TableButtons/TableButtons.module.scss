@@ -248,13 +248,26 @@
 
   .addCard {
     height: 40px;
-    font-size: 14px;
-    padding: 0 10px;
   }
+}
 
-  .addCardText {
-    font-size: 14px;
-  }
+/* Added responsive text styles for the Add Card button */
+.addCardResponsiveText {
+    white-space: nowrap;
+    font-size: 16px; /* Default size */
+    font-weight: 700;
+    font-family: var(--nav-font-family);
+    letter-spacing: var(--nav-font-letter-spacing);
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+    @media (max-width: 600px) {
+        font-size: 13px;
+    }
+    @media (max-width: 480px) {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 400px) {
