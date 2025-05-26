@@ -14,16 +14,13 @@ import { deleteProduct } from "../services/deleteProduct ";
 import { updateProduct } from "../services/updateProduct";
 import { addProduct } from "../services/addProduct";
 import { Text } from "../../../components";
-import { PlusIcon } from "../../../icons";
+import { AddButton } from "../../../components/Table/ui/TableButtons/AddButton";
 
 const productColumns = [
-  { key: "id", header: "ID" },
-  { key: "name", header: "Название" },
-  { key: "description", header: "Описание" },
-  {
-    key: "quantity",
-    header: "Кол-во",
-  },
+  { key: "id", header: "ID", priority: 99, minWidth: "40px", maxWidth: "50px" },
+  { key: "name", header: "Название", priority: 1 },
+  { key: "description", header: "Описание", priority: 2 },
+  { key: "quantity", header: "Кол-во", priority: 3 },
 ];
 
 export const ProductPage = () => {
@@ -118,7 +115,7 @@ export const ProductPage = () => {
         action={() => removeAction(productToEdit?.id)}
       />
 
-      <HStack maxWidth justify="between" className={cls.header}>
+      <HStack className={cls.header}>
         <input
           className={cls.input}
           type="text"
@@ -127,12 +124,7 @@ export const ProductPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <HStack justify="between" maxHeight className={cls.addCard}>
-          <Text text="Добавить карточку" weight="700" size="20" />
-          <button className={cls.button} onClick={() => openModal()}>
-            <PlusIcon />
-          </button>
-        </HStack>
+        <AddButton onClick={() => openModal()} />
       </HStack>
 
       <HStack className={cls.tableWrapper}>

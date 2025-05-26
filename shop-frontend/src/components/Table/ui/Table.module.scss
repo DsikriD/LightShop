@@ -60,46 +60,6 @@
     border: none;
 }
 
-.buttonEdit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 30px;
-    height: 37.45px;
-    width: 37.45px;
-
-    background-color: var(--color-yellow);
-    border: 3px solid var(--color-black);
-    color: var(--color-black);
-
-    padding: 0;
-    cursor: pointer;
-
-    line-height: 0;
-}
-
-.buttonEdit:hover {
-    background-color: var(--color-white);
-}
-
-.buttonTrash {
-    border-radius: 30px;
-    height: 37.45px;
-    width: 37.45px;
-    border: 3px solid var(--color-black);
-    padding: 0;
-    cursor: pointer;
-
-    background-color: var(--color-red);
-
-    line-height: 0;
-}
-
-.buttonTrash:hover {
-    background-color: var(--color-white);
-}
-
 .col-edit {
     width: 70px;
 }
@@ -111,27 +71,14 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 16px;
-  gap: 8px;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+  padding: 10px;
 }
-.pagination button {
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.2s, color 0.2s;
-}
-.pagination button:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-.activePage {
-    background: var(--color-black);
-    color: var(--color-white);
-    border-color: var(--color-black);
-}
-.disabledPage {
-    background: var(--color-white);
-    color: var(--color-gray);
-    border-color: var(--color-gray);
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }

@@ -1,9 +1,16 @@
 .Navbar {
     position: absolute;
-    inset: 0;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    min-width: 0;
     height: var(--navbar-height);
     background-color: var(--color-white);
     z-index: 10;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    box-sizing: border-box;
 }
 
 .theme-black {
@@ -15,15 +22,42 @@
 }
 
 .icon {
-    padding: 0 140px 0 140px;
+    padding: 0 40px;
     border: 1px solid purple;
+    min-width: 40px;
+    max-width: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    @media (max-width: 900px) {
+        padding: 0 10px;
+    }
 }
 
 .NavbarItem {
     height: var(--navbar-height);
-    margin: 0 0 0 62px;
+    margin: 0 0 0 32px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    @media (max-width: 900px) {
+        margin: 0 0 0 12px;
+    }
 }
 
 .NavbarItem:hover {
 
+}
+
+.NavbarText {
+    display: flex;
+    align-items: center;
+    @media (max-width: 500px) {
+        display: none;
+    }
 }

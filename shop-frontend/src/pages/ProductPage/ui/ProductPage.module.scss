@@ -1,49 +1,204 @@
 .ProductPage {
     position: absolute;
     inset: 0;
-    padding: calc(50px + var(--navbar-height)) 140px 0 140px;
+    padding: calc(50px + var(--navbar-height)) 20px 0 20px;
     background-color: var(--color-white);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-width: 100vw;
+
+    @media (min-width: 768px) {
+        padding: calc(50px + var(--navbar-height)) 40px 0 40px;
+    }
+
+    @media (min-width: 1024px) {
+        padding: calc(50px + var(--navbar-height)) 80px 0 80px;
+    }
+
+    @media (min-width: 1440px) {
+        padding: calc(50px + var(--navbar-height)) 140px 0 140px;
+    }
 }
 
 .header {
-    margin: 0 0 40px 0;
-    padding: 10px 15px;
-    background-color: var(--color-light-gray);
-    height: 60px;
-    width: calc(100% - 30px);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+        gap: 15px;
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
 }
 
 .input {
-    height: 31px;
-    font-family: var(--nav-font-family);
-    font-size: var(--nav-font-size);
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    min-height: 34px;
+    padding: 0 18px;
+    border: 3px solid var(--color-black);
+    border-radius: 30px;
+    font-size: 16px;
     font-weight: 700;
-    border: 1px solid var(--color-black);
-    padding: 2px 8px;
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    transition: box-shadow 0.3s, border-color 0.3s;
+
+    @media (max-width: 768px) {
+        height: 42px;
+        font-size: 14px;
+        padding: 0 14px;
+    }
+
+    @media (max-width: 600px) {
+        height: 38px;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    @media (max-width: 480px) {
+        height: 34px;
+        font-size: 13px;
+        padding: 0 8px;
+    }
+
+    &::placeholder {
+        color: var(--color-gray);
+        transition: opacity 0.3s ease;
+    }
+
+    &:focus {
+        outline: none;
+        border-width: 4px;
+        border-color: var(--color-black);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        background-color: var(--color-light-gray);
+        &::placeholder {
+            opacity: 0.5;
+        }
+    }
+
+    &:hover {
+        border-width: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 }
 
-.addCard{
-    width: 248px;
+.addCard {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+    border: 3px solid var(--color-black);
+    border-radius: 30px;
+    background-color: var(--color-white);
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 48px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        height: 42px;
+        font-size: 14px;
+        line-height: 42px;
+        padding: 0 14px;
+    }
+
+    @media (max-width: 600px) {
+        width: 100%;
+        height: 38px;
+        font-size: 14px;
+        line-height: 38px;
+        padding: 0 10px;
+    }
+
+    @media (max-width: 480px) {
+        height: 34px;
+        font-size: 13px;
+        line-height: 34px;
+        padding: 0 8px;
+    }
+
+    &:hover {
+        background-color: var(--color-green);
+        .button {
+            background-color: var(--color-white);
+        }
+    }
+
+    &:active {
+        background-color: var(--color-light-gray);
+    }
 }
 
-.button {
+.button, .buttonEdit, .buttonTrash {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    border-radius: 50%;
+    border: 3px solid var(--color-black);
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
-    height: 37.45px;
-    width: 37.45px;
-    background-color: var(--color-secondary);
-    border: 3px solid var(--color-black);
-    color: var(--color-black);
-    padding: 0;
+    overflow: hidden;
+    font-size: 18px;
     cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 8px;
+
+    @media (max-width: 600px) {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+        max-width: 32px;
+        max-height: 32px;
+        font-size: 16px;
+    }
+    @media (max-width: 400px) {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        min-height: 28px;
+        max-width: 28px;
+        max-height: 28px;
+        font-size: 15px;
+    }
 }
 
-.button:hover {
-    background-color: var(--color-white);
-    color: var(--color-white);
+.tableWrapper {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+// Add responsive styles for the table
+:global {
+    .table {
+        min-width: 600px;
+        
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+    }
 }
 
 @media (max-width: 500px) {
@@ -53,8 +208,15 @@
     }
 }
 
-
-.tableWrapper {
-    width: 100%;
-    margin-top: 20px;
+.addCardText {
+    margin-right: 8px;
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+    @media (max-width: 600px) {
+        font-size: 13px;
+    }
+    @media (max-width: 480px) {
+        font-size: 12px;
+    }
 }
