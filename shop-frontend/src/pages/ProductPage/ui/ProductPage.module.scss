@@ -186,8 +186,7 @@
 .tableWrapper {
     width: 100%;
     margin-top: 20px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
 }
 
 // Add responsive styles for the table
@@ -205,18 +204,5 @@
     .title {
         font-size: 15px;
         padding: 0px 5px 10px 5px;
-    }
-}
-
-.addCardText {
-    margin-right: 8px;
-    @media (max-width: 768px) {
-        font-size: 14px;
-    }
-    @media (max-width: 600px) {
-        font-size: 13px;
-    }
-    @media (max-width: 480px) {
-        font-size: 12px;
     }
 }

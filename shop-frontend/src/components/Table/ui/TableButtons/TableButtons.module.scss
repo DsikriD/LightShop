@@ -36,6 +36,10 @@
     transition: all 0.2s ease;
     position: relative;
 
+    display: flex;              /* Включаем flex */
+    justify-content: center;    /* Горизонтальное центрирование */
+    align-items: center;        /* Вертикальное центрирование */
+
     &:hover {
         background-color: var(--color-white);
         transform: scale(1.1);
@@ -44,6 +48,12 @@
     &:active {
         transform: scale(0.95);
     }
+}
+
+.buttonTrash svg {
+    width: 60%;   /* Подгоняем размер иконки под кнопку */
+    height: auto; /* Сохраняем пропорции */
+    display: block; /* Убирает лишние отступы */
 }
 
 .addCard {
