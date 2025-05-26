@@ -1,5 +1,6 @@
 .outerTable {
     width: 100%;
+    overflow: hidden;
     border-collapse: collapse;
     table-layout: fixed;
 }
@@ -79,6 +80,6 @@
 
 .tableContainer {
   width: 100%;
-  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  overflow: hidden; /* Hide horizontal scrollbar */
 }

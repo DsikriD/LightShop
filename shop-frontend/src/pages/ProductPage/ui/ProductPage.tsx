@@ -5,6 +5,7 @@ import {
   HStack,
   ProductModal,
   Table,
+  VStack,
 } from "../../../components";
 import { Product } from "../models/typeProducts";
 import { fetchProducts } from "../services/fetchProducts";
@@ -127,7 +128,7 @@ export const ProductPage = () => {
         <AddButton onClick={() => openModal()} />
       </HStack>
 
-      <HStack className={cls.tableWrapper}>
+      <VStack  maxHeight className={cls.tableWrapper}>
         <Table
           edit={edit}
           remove={remove}
@@ -135,7 +136,7 @@ export const ProductPage = () => {
           data={products}
           columns={productColumns}
         />
-      </HStack>
+      </VStack>
     </div>
   );
 };
