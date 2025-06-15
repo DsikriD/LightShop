@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AdminPanel, HomePage, LoginPage, ProtectedRoute } from "./pages";
 
 import { Navbar } from "./features";
@@ -15,14 +15,22 @@ import { navbarProductConfig } from "./features/Navbar/config/navbarConfig";
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const renderPublicItems = useCallback(
-    () => renderNavbarItems(navbarMainConfig),
-    []
+    () => renderNavbarItems(navbarMainConfig, windowWidth),
+    [windowWidth]
   );
 
   const renderPrivateItems = useCallback(
-    () => renderNavbarItems(navbarProductConfig),
-    []
+    () => renderNavbarItems(navbarProductConfig, windowWidth),
+    [windowWidth]
   );
 
   const PublicLayout = () => (
