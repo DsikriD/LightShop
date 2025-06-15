@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import cls from "./NavbarShared.module.scss";
 import { HStack } from "../../../components";
 import classNames from "classnames";
+import { MainIcon } from "../../../icons";
 
 export type NavbarTheme = "white" | "black";
 
@@ -16,7 +17,7 @@ export const Navbar = (props: NavbarProps) => {
   return (
     <HStack className={classNames(cls.Navbar, cls[`theme-${theme}`])}>
       <HStack maxHeight className={cls.icon}>
-        Icon
+        <MainIcon />
       </HStack>
       {children}
     </HStack>

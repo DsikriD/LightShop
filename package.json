@@ -1,0 +1,12 @@
+{
+  "name": "shop-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run dev\" \"cd shop-frontend && npm start\"",
+    "install-all": "npm install && cd server && npm install && cd ../shop-frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 

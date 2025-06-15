@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlusIcon } from '../../../../icons';
-import { HStack, Text } from '../../../../components';
+import { HStack } from '../../../../components';
 import cls from './TableButtons.module.scss';
 
 interface AddButtonProps {
@@ -9,10 +9,8 @@ interface AddButtonProps {
 
 export const AddButton = ({ onClick }: AddButtonProps) => {
     return (
-        <HStack justify="between" className={cls.addCard} onClick={onClick}>
-            <span
-                className={cls.addCardResponsiveText}
-            >
+        <HStack gap="8" justify="between" className={cls.addCard} onClick={onClick}>
+            <span>
                 Добавить карточку
             </span>
             <button className={cls.button}>

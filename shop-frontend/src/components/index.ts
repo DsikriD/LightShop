@@ -1,6 +1,5 @@
 export { Table } from "./Table";
 export { ProductModal } from "./ProductModal";
-export { ConfirmationModal } from "./ConfirmationModal";
 export { Text } from "./Text";
 
 export { HStack } from "./Stack/ui/HStack/HStack";

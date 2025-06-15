@@ -57,34 +57,39 @@
 }
 
 .addCard {
-    gap: 10px;
-    padding: 0 20px;
-    height: 50px;   
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
     border: 3px solid var(--color-black);
     border-radius: 30px;
     background-color: var(--color-white);
-    transition: all 0.2s ease;
+    font-size: 16px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-gray);
+    box-sizing: border-box;
     position: relative;
+    overflow: hidden;
 
     @media (max-width: 768px) {
-        height: 45px;
+        font-size: 14px;
     }
 
     @media (max-width: 480px) {
-        height: 40px;
+        font-size: 12px;
     }
+}
 
-    &:hover {
-        background-color: var(--color-green);
-        transform: scale(1.02);
-        .button {
-            background-color: var(--color-white);
-        }
-    }
-
-    &:active {
-        transform: scale(0.98);
-    }
+.addCard span {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .buttonLeftArrow {
@@ -164,7 +169,6 @@
     border: 3px solid var(--color-black);
     background-color: var(--color-light-gray);
     font-size: 16px;
-    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -196,7 +200,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
     height: 37.45px;
     width: 37.45px;
     border-radius: 50%;
@@ -205,23 +208,12 @@
     cursor: pointer;
     transition: background 0.2s;
     position: relative;
-    margin-left: 8px;
 
     &:hover {
         background-color: var(--color-white);
     }
     &:active {
         background-color: var(--color-light-gray);
-    }
-}
-
-.addCardText {
-    @media (max-width: 768px) {
-        font-size: 16px;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 14px;
     }
 }
 
@@ -245,29 +237,6 @@
   .buttonNumber {
     font-size: 14px;
   }
-
-  .addCard {
-    height: 40px;
-  }
-}
-
-/* Added responsive text styles for the Add Card button */
-.addCardResponsiveText {
-    white-space: nowrap;
-    font-size: 16px; /* Default size */
-    font-weight: 700;
-    font-family: var(--nav-font-family);
-    letter-spacing: var(--nav-font-letter-spacing);
-
-    @media (max-width: 768px) {
-        font-size: 14px;
-    }
-    @media (max-width: 600px) {
-        font-size: 13px;
-    }
-    @media (max-width: 480px) {
-        font-size: 12px;
-    }
 }
 
 @media (max-width: 400px) {
@@ -288,16 +257,6 @@
   }
 
   .buttonNumber {
-    font-size: 12px;
-  }
-
-  .addCard {
-    height: 32px;
-    font-size: 12px;
-    padding: 0 5px;
-  }
-
-  .addCardText {
     font-size: 12px;
   }
 } 

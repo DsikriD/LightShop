@@ -11,6 +11,7 @@
     align-items: center;
     overflow-x: auto;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .theme-black {
@@ -23,7 +24,6 @@
 
 .icon {
     padding: 0 40px;
-    border: 1px solid purple;
     min-width: 40px;
     max-width: 40px;
     width: 40px;

@@ -32,82 +32,28 @@ export function Table<T extends Record<string, any>>({
   edit,
   remove,
 }: TableProps<T>) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(6);
   const [visibleColumns, setVisibleColumns] = useState<ColumnDefinition<T>[]>(columns);
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
-  const filteredData = data.filter((item) =>
-    columns.some((col) => {
-      const value = item[col.key];
-      return (
-        value &&
-        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    })
-  );
-
   useEffect(() => {
-    function calculateRowsPerPage() {
-      if (!tableContainerRef.current) return;
-      const headerHeight = 60;
-      const rowHeight = 61 + 20;
-      const availableHeight = window.innerHeight - tableContainerRef.current.getBoundingClientRect().top - 40;
-      const count = Math.max(1, Math.floor((availableHeight - headerHeight) / rowHeight));
-      setRowsPerPage(count);
-    }
-
     function updateVisibleColumns() {
       if (!tableContainerRef.current) return;
-      
       const containerWidth = tableContainerRef.current.offsetWidth;
       const minColumnWidth = 100;
       const actionColumnsWidth = 120;
-      
       const availableWidth = containerWidth - actionColumnsWidth;
       const maxColumns = Math.floor(availableWidth / minColumnWidth);
-      
       const sortedColumns = [...columns].sort((a, b) => {
         const priorityA = a.priority ?? 999;
         const priorityB = b.priority ?? 999;
         return priorityA - priorityB;
       });
-      
-      // Take only the columns that can fit
       setVisibleColumns(sortedColumns.slice(0, maxColumns));
     }
-
-    calculateRowsPerPage();
     updateVisibleColumns();
-    
-    window.addEventListener("resize", () => {
-      calculateRowsPerPage();
-      updateVisibleColumns();
-    });
-    
-    return () => window.removeEventListener("resize", () => {
-      calculateRowsPerPage();
-      updateVisibleColumns();
-    });
+    window.addEventListener("resize", updateVisibleColumns);
+    return () => window.removeEventListener("resize", updateVisibleColumns);
   }, [columns]);
-
-  useEffect(() => {
-    const totalPages = Math.max(1, Math.ceil(filteredData.length / rowsPerPage));
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
-    }
-  }, [rowsPerPage, filteredData.length]);
-
-  const totalPages = Math.max(1, Math.ceil(filteredData.length / rowsPerPage));
-  const paginatedData = filteredData.slice(
-    (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
-  );
-
-  const goToPage = (page: number) => {
-    if (page < 1 || page > totalPages) return;
-    setCurrentPage(page);
-  };
 
   return (
     <div ref={tableContainerRef} className={cls.tableContainer}>
@@ -148,7 +94,7 @@ export function Table<T extends Record<string, any>>({
               <td colSpan={visibleColumns.length + 2} />
             </tr>
 
-            {paginatedData.map((item, rowIndex) => (
+            {data.map((item, rowIndex) => (
               <React.Fragment key={`row-${item.id}`}>
                 <tr className={cls.row} key={`data-row-${item.id}`}>
                   {visibleColumns.map((col, colIndex) => (
@@ -193,26 +139,6 @@ export function Table<T extends Record<string, any>>({
           </tbody>
         </table>
       </HStack>
-      {totalPages > 1 && (
-        <div className={cls.pagination}>
-          <ArrowLeftButton onClick={() => goToPage(currentPage - 1)}  disabled={currentPage === 1}/>
-          {Array.from(
-            { length: Math.min(3, totalPages) },
-            (_, i) => {
-              const page = Math.max(1, currentPage - 1) + i;
-              if (page > totalPages) return null;
-              return (
-                <NumberButton key={page}
-                number={page}
-                onClick={() => goToPage(page)}
-                disabled={currentPage === page }
-                />
-              );
-            }
-          )}
-          <ArrowRightButton onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}/>
-        </div>
-      )}
     </div>
   );
 }

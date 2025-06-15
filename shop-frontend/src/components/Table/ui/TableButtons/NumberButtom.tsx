@@ -16,7 +16,7 @@ export const NumberButton = ({ onClick, number, disabled }: NumberButtonProps) =
             className={cls.buttonNumber}
             disabled={disabled}
         >
-            <Text color={!disabled? "black" : "white"} text={number.toLocaleString()}/>
+            <Text color={!disabled? "black" : "white"} weight="700" text={number.toLocaleString()}/>
         </button>
     );
 }; 
