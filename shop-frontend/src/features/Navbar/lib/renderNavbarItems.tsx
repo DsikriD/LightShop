@@ -5,18 +5,15 @@ import { NavbarItem } from "../ui/NavbarItem";
 import { TextSize } from "../../../components/Text/ui/Text";
 
 const sizsed = (windowWidth?: number) : TextSize => {
-if (windowWidth && windowWidth < 768) {
+if (windowWidth && windowWidth < 456) {
     return "20";
   } else {
     return "35";
   }
 };
 
-
 export const renderNavbarItems = (config: NavbarItemConfig[], windowWidth?: number) =>
   
-
-
   config.map((item, index) => (
     <NavbarItem key={index}>
       {item.type === "text" && (
