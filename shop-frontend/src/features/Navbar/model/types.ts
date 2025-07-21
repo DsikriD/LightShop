@@ -14,4 +14,5 @@ export interface NavbarItemConfig {
   size?: TextSize;
   weight?: TextWeight;
   buttonProps?: {};
+  path?: string;
 }

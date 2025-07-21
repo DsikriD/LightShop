@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { AdminPanel, HomePage, LoginPage, ProtectedRoute } from "./pages";
+import { AdminPanel, HomePage, LoginPage, ProtectedRoute, CatalogPage } from "./pages";
 
 import { Navbar } from "./features";
 import {
@@ -72,6 +72,7 @@ export const App = () => {
 
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="catalog" element={<CatalogPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,8 +1,8 @@
 import { NavbarItemConfig } from "../model/types";
 
 export const navbarMainConfig: NavbarItemConfig[] = [
-  { type: "text", size: "20", weight: "500", color: "black", text: "О нас" },
-  { type: "text", size: "20", weight: "500", color: "black", text: "Каталог" },
+  { type: "text", size: "20", weight: "500", color: "black", text: "О нас", path: "/" },
+  { type: "text", size: "20", weight: "500", color: "black", text: "Каталог", path: "/catalog" },
   {
     type: "text",
     size: "20",
