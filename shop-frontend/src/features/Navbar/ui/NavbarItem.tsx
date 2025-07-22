@@ -1,13 +1,15 @@
-import React, { ReactNode } from "react";
-import cls from "./NavbarShared.module.scss";
-import { HStack } from "../../../components";
+import type { ReactNode } from "react"
+import { HStack } from "../../../components"
+import styles from "./NavbarShared.module.scss"
+import React from "react"
 
 export interface NavbarItemProps {
-  children: ReactNode;
+  children: ReactNode
+  className?: string
 }
 
 export const NavbarItem = (props: NavbarItemProps) => {
-  const { children } = props;
+  const { children, className } = props
 
-  return <HStack className={cls.NavbarItem}>{children}</HStack>;
-};
+  return <HStack className={`${styles.navbarItem} ${className || ""}`}>{children}</HStack>
+}
