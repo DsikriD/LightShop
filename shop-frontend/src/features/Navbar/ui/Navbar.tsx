@@ -51,7 +51,7 @@ export const Navbar = (props: NavbarProps) => {
         <MainIcon />
       </HStack>
       {/* Основное меню для десктопа */}
-      <div className={cls.desktopMenu}>{children}</div>
+      <HStack gap="32" className={cls.desktopMenu}>{children}</HStack>
       {/* Бургер-меню для мобильных (справа) */}
       <div className={cls.burgerWrapper}>
         <button
@@ -77,22 +77,19 @@ export const Navbar = (props: NavbarProps) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
               style={{ pointerEvents: 'auto' }}
+              onClick={handleCloseMenu}
               ref={menuRef}
             >
               {React.Children.map(children, (child, idx) => {
                 if (React.isValidElement(child)) {
                   const childProps = child.props as any;
-                  // Рекурсивно навешиваем onClick на NavLink и Button внутри
+                  // Рекурсивно навешиваем onClick на NavLink и Button внутри, но не закрываем меню
                   const processSubtree = (node: any): any => {
                     if (React.isValidElement(node)) {
                       const type = (node.type as any)?.name;
                       if (type === 'NavLink' || type === 'Button') {
-                        const prevOnClick = (node.props as any).onClick;
-                        const handleClick = (e: any) => {
-                          if (typeof prevOnClick === 'function') prevOnClick(e);
-                          handleCloseMenu();
-                        };
-                        return React.cloneElement(node, { ...(prevOnClick ? { onClick: handleClick } : {}) });
+                        // Просто возвращаем элемент без handleCloseMenu
+                        return node;
                       }
                       // Рекурсивно для вложенных
                       if (node.props && (node.props as any).children) {
@@ -104,7 +101,7 @@ export const Navbar = (props: NavbarProps) => {
                   };
                   return React.createElement(
                     child.type,
-                    { ...childProps, key: child.key ?? idx, onClick: handleCloseMenu },
+                    { ...childProps, key: child.key ?? idx },
                     childProps.children ? React.Children.map(childProps.children, processSubtree) : undefined
                   );
                 }
