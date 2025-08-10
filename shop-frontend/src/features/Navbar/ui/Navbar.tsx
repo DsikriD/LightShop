@@ -80,33 +80,7 @@ export const Navbar = (props: NavbarProps) => {
               onClick={handleCloseMenu}
               ref={menuRef}
             >
-              {React.Children.map(children, (child, idx) => {
-                if (React.isValidElement(child)) {
-                  const childProps = child.props as any;
-                  // Рекурсивно навешиваем onClick на NavLink и Button внутри, но не закрываем меню
-                  const processSubtree = (node: any): any => {
-                    if (React.isValidElement(node)) {
-                      const type = (node.type as any)?.name;
-                      if (type === 'NavLink' || type === 'Button') {
-                        // Просто возвращаем элемент без handleCloseMenu
-                        return node;
-                      }
-                      // Рекурсивно для вложенных
-                      if (node.props && (node.props as any).children) {
-                        const children = (node.props as any).children;
-                        return React.cloneElement(node, {}, children ? React.Children.map(children, processSubtree) : undefined);
-                      }
-                    }
-                    return node;
-                  };
-                  return React.createElement(
-                    child.type,
-                    { ...childProps, key: child.key ?? idx },
-                    childProps.children ? React.Children.map(childProps.children, processSubtree) : undefined
-                  );
-                }
-                return child;
-              })}
+              {children}
             </motion.div>
           )}
         </AnimatePresence>
