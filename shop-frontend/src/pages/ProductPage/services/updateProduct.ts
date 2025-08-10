@@ -16,10 +16,11 @@ export const updateProduct = createAsyncThunk(
         Object.entries(product).filter(([key]) => allowedFields.includes(key))
       );
       const response = await axios.put(
-        `${API_URL}/products/${product.id}`,
+        `${API_URL}/admin/products/${product.id}`,
         filteredProduct,
         {
           headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         }
       );
       return response.data;

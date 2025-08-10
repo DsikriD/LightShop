@@ -7,7 +7,7 @@ export const fetchProducts = createAsyncThunk<Product[]>(
   "products/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/products`);
+      const response = await axios.get(`${API_URL}/admin/products`, { withCredentials: true });
       return response.data;
     } catch (error) {
       return rejectWithValue("Ошибка при загрузке продуктов");

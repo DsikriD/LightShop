@@ -28,6 +28,40 @@ app.use(cors({
 
 const csrfProtection = csurf({ cookie: true });
 
+// Проверка авторизации по JWT в httpOnly cookie
+function requireAuth(req, res, next) {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    const decoded = jwt.verify(token, SECRET_KEY);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Invalid or expired token' });
+  }
+}
+
+// Проверка роли ADMIN
+function requireAdmin(req, res, next) {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const role = String(decoded.role || '').toUpperCase();
+    if (role !== 'ADMIN') {
+      return res.status(403).json({ message: 'Forbidden: admin only' });
+    }
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Invalid or expired token' });
+  }
+}
+
 /** Авторизация */
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
@@ -39,9 +73,9 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Преобразуем BigInt в строку перед передачей в JWT
+    // Преобразуем BigInt в строку перед передачей в JWT и добавляем роль
     const token = jwt.sign(
-      { username: user.username, id: user.id.toString() }, // <-- Исправлено
+      { username: user.username, id: user.id.toString(), role: user.role },
       SECRET_KEY,
       { expiresIn: '1h' }
     );
@@ -84,7 +118,7 @@ app.post('/api/logout', (req, res) => {
   res.json({ message: 'Logout successful' });
 });
 
-/** CRUD для товаров */
+/** Публичный GET для товаров (для обычных пользователей) */
 app.get('/api/products', async (req, res) => {
   try {
     const products = await prisma.products.findMany();
@@ -92,7 +126,7 @@ app.get('/api/products', async (req, res) => {
     // Преобразуем все id из BigInt в String
     const formattedProducts = products.map(product => ({
       ...product,
-      id: product.id.toString(), // Конвертация BigInt в строку
+      id: product.id.toString(),
     }));
 
     res.json(formattedProducts);
@@ -102,7 +136,22 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
-app.post('/api/products', async (req, res) => {
+/** Админские CRUD для товаров - доступны только ADMIN */
+app.get('/api/admin/products', requireAdmin, async (req, res) => {
+  try {
+    const products = await prisma.products.findMany();
+    const formattedProducts = products.map(product => ({
+      ...product,
+      id: product.id.toString(),
+    }));
+    res.json(formattedProducts);
+  } catch (error) {
+    console.error('Error fetching products (admin):', error);
+    res.status(500).json({ message: 'Error fetching products' });
+  }
+});
+
+app.post('/api/admin/products', requireAdmin, async (req, res) => {
   try {
     const {
       name,
@@ -138,10 +187,9 @@ app.post('/api/products', async (req, res) => {
       },
     });
 
-    // Преобразуем BigInt в String перед отправкой ответа
     const formattedProduct = {
       ...product,
-      id: product.id.toString(), // Преобразуем id
+      id: product.id.toString(),
     };
 
     res.status(201).json(formattedProduct);
@@ -151,16 +199,15 @@ app.post('/api/products', async (req, res) => {
   }
 });
 
-app.put('/api/products/:id', async (req, res) => {
+app.put('/api/admin/products/:id', requireAdmin, async (req, res) => {
   try {
     const { id } = req.params;
 
     const product = await prisma.products.update({
-      where: { id: BigInt(id) }, // Используем BigInt
+      where: { id: BigInt(id) },
       data: req.body,
     });
 
-    // Преобразуем id в строку перед отправкой
     const formattedProduct = {
       ...product,
       id: product.id.toString(),
@@ -173,12 +220,12 @@ app.put('/api/products/:id', async (req, res) => {
   }
 });
 
-app.delete('/api/products/:id', async (req, res) => {
+app.delete('/api/admin/products/:id', requireAdmin, async (req, res) => {
   try {
     const { id } = req.params;
 
     await prisma.products.delete({
-      where: { id: BigInt(id) }, // Используем BigInt
+      where: { id: BigInt(id) },
     });
 
     res.json({ message: 'Product deleted successfully' });
