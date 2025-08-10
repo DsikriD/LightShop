@@ -22,9 +22,9 @@ export const Navbar = (props: NavbarProps) => {
     setMenuOpen(false);
   }, []);
   
-  const handleOpenMenu = useCallback(() => {
-    setMenuOpen(true);
-  }, []);
+  const handleToggleMenu = useCallback(() => {
+    setMenuOpen(!menuOpen);
+  }, [menuOpen]);
 
   const handleClickOutside = useCallback((event: MouseEvent) => {
     if (!menuOpen) return;
@@ -57,7 +57,7 @@ export const Navbar = (props: NavbarProps) => {
         <button
           className={cls.burger}
           aria-label="Открыть меню"
-          onClick={handleOpenMenu}
+          onClick={handleToggleMenu}
           ref={burgerRef}
         >
           {/* Классическая SVG-иконка бургера */}
